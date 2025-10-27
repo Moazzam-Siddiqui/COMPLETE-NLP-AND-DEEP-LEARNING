@@ -314,4 +314,59 @@ For Architectural Working:
   <img src="./Images/image.png" alt="NLP Diagram" width="600">
 </p>
 
+## 🧠 Skip-Gram
+
+**Definition:**  
+Skip-Gram is the inverse of CBOW. Given a **target word**, Skip-Gram predicts the **surrounding context words**.
+
+**Window Size:** `5`
+
+| **Output (Context Words)**                | **Input (Target Word)** |
+|-------------------------------------------|--------------------------|
+| iNeuron, company, related, to             | is                       |
+| company, related, to, Data                | related                  |
+| related, to, Data, Science                | to                       |
+
+### ⚖️ When to use
+- **CBOW** → better for **small datasets** (faster training).  
+- **Skip-Gram** → better for **large datasets** and for learning **good vectors for rare words**.
+
+### 📈 Notes
+1. Increasing the **training data** typically improves both CBOW and Skip-Gram.  
+2. Increasing the **window size** gives the model more context and often increases the vector dimensionality/representational capacity.
+
+---
+
+## 🚀 Advantages of Word2Vec
+
+1. Produces **dense** word vectors (not sparse).  
+2. Captures **semantic** relationships (similar words are close in vector space).  
+3. Uses a **fixed vector dimensionality** (e.g., 100, 300).  
+4. Only a small portion of words may be **OOV** depending on training.
+
+---
+
+## 🤖 Deep Learning & Neural Networks
+
+### ANN (Artificial Neural Network)
+
+**Overview:**  
+An ANN is composed of layers of connected neurons (input layer → one or more hidden layers → output layer). Each connection has a weight; activations travel forward and errors propagate backward during training.
+
+**Basic Components:**
+- **Neuron:** computes weighted sum + bias → activation function.  
+- **Layers:** Input, Hidden, Output.  
+- **Activation functions:** ReLU, Sigmoid, Tanh, Softmax (for classification).  
+- **Loss functions:** MSE, Cross-Entropy.  
+- **Optimization:** Gradient Descent variants (SGD, Adam).
+
+**Typical Workflow:**
+1. Prepare and normalize input data.  
+2. Define architecture (layers, units, activations).  
+3. Choose loss and optimizer.  
+4. Train with mini-batches and validate.  
+5. Evaluate on test set and tune hyperparameters.
+
+---
+
 
