@@ -310,4 +310,8 @@ A neural network model predicting a word based on its context (surrounding words
 ---
 
 For Architectural Working:
+<p align="center">
+  <img src="./Images/image.png" alt="NLP Diagram" width="600">
+</p>
+
 
