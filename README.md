@@ -501,5 +501,275 @@ An ANN is composed of layers of connected neurons (input layer → one or more h
 
 For Architectural Working:
 <p align="center">
-  <img src="./Images/image.png" alt="NLP Diagram" width="600">
+  <img src="./Images/img1.jpg" alt="NLP Diagram" width="600">
+  <img src="./Images/img2.jpg" alt="NLP Diagram" width="600">
+  <img src="./Images/img3.jpg" alt="NLP Diagram" width="600">
+  <img src="./Images/img4.jpg" alt="NLP Diagram" width="600">
 </p>
+
+## 🔁 Sequential Data
+
+1. **Definition:**  
+   Sequential data refers to data that has a **meaning or relationship** with its previous inputs.  
+   It can be text, time series, or any other form of data where the order matters.  
+
+   **Example:**  
+   - Sentence: *“The food is good.”*  
+     Here, “GOOD” is predicted based on the previous words (“The food is”), similar to how text generation models work.  
+     Even if the next word could be “average” or “bad,” the model learns to make a prediction based on prior context.
+
+---
+
+### 💬 Examples of Sequential Data
+2. **Language Translation**  
+3. **Auto Suggestions** (LinkedIn, Gmail, etc.)  
+4. **Sales Data** – especially when analyzed based on date and time for forecasting.
+
+---
+
+## ⚙️ Why Prefer ANN over RNN?
+
+In short, when generating outputs:  
+- The model takes inputs along with **initialized weights**.  
+- Adds a **bias**.  
+- Applies a **basic activation function** to produce the output.  
+
+While ANNs work on independent data points, RNNs handle **sequential dependencies**, but ANNs are still preferred in some simpler cases where context or time-sequence is not crucial.
+
+
+## **Simple RNN (Recurrent Neural Network)**
+
+### **Definition:**
+A **Recurrent Neural Network (RNN)** is a type of neural network designed to handle **sequential data** — data where the current output depends on previous inputs.  
+It has a special structure where the **output from one step is fed back as input to the next step**, allowing the network to remember information over time.
+
+For example:  
+In a sentence like *“The food is good”*, the meaning of the word **“good”** depends on the previous words — *“The food is”*.  
+RNNs are used for tasks like **text generation**, **speech recognition**, **machine translation**, and **time series forecasting**.
+
+**Key idea:**  
+RNN = ANN + Memory (it remembers past information while processing new data)
+
+---
+
+### **Dataset Example**
+
+| Text | O/P |
+|------|-----|
+| S1: The food is good | 1 |
+| S2: The food is bad | 0 |
+| S3: The food is not good | 0 |
+
+The yellow words represent the **vocabulary** or **unique words** in our dataset.
+
+---
+
+### **One-Hot Encoding Representation**
+
+Before sending text data to an RNN, we first convert words into **numerical vectors** using a simple encoding method called **One-Hot Encoding**.
+
+| Word | [The, Food, Good, Bad, Not] |
+|------|------------------------------|
+| the  | [1, 0, 0, 0, 0] |
+| food | [0, 1, 0, 0, 0] |
+| good | [0, 0, 1, 0, 0] |
+| bad  | [0, 0, 0, 1, 0] |
+| not  | [0, 0, 0, 0, 1] |
+
+---
+
+### **Forward Propagation in RNN**
+
+Once the words are encoded, they are fed **one at a time** into the RNN.  
+At each **time step**, the RNN processes one word and passes its **hidden state** (memory) to the next step.
+
+This means the network understands **context** and **sequence**, not just isolated words.
+
+Example flow for:  
+**“The food is good”**
+
+For BlackBox Understanding:
+
+#### RNN:
+
+<p align="center">
+  <img src="./Images/RNN1.jpg" alt="NLP Diagram" width="600">
+</p>
+
+#### RNN Parameters Calculations:
+
+<p align="center">
+  <img src="./Images/RNN2.jpg" alt="NLP Diagram" width="600">
+</p>
+
+#### Forward Propagation:
+
+<p align="center">
+  <img src="./Images/ForwardPropagation.jpg" alt="NLP Diagram" width="600">
+</p>
+
+**Why prefer ANN over RNN:**
+
+So in short, whatever output we are getting after,we probably take the inputs along with the weights that are initialized, then we add a bias then we add a basic activation function
+
+*y = f(x1w1 + x2w2 + … xnwn + b1 … bn)*
+
+y = output  
+X = inputs  
+W = weights  
+B = bias  
+F = activation function  
+
+There are many activation functions like sigmoid for binary output, softmax for multiclass classification and ReLu for CNN.
+
+## RNN BACK PROPAGATION WITH TIME:
+
+We've seen how we have calculated our forward propagation but still there is lose function which was  
+loss = y - y`.  
+So ,to reduce the all that loss we tends to approach backward propagation and we have to update all the weights that are there
+
+[wi, wh ,wo]
+
+And this will happen when our loses will be really really less  or our global minima will be entirely down.
+
+### How we will do that:
+
+We will use the weight update formula ,which is :-
+
+### Weight Updation Formula
+
+We update the weights during backpropagation using the following formula:
+
+w_new = w_old - η * (∂h / ∂w_old)
+
+where,  
+- w_new → updated weight  
+- w_old → previous weight  
+- η (eta) → learning rate  
+- ∂h / ∂w_old → gradient of the loss with respect to the old weight
+
+### Simple ANN and RNN Projects
+
+Now we are going to do some simple ANN and RNN projects using libraries like **Keras** and **TensorFlow**.
+
+#### We will do:
+
+1. Take **Churn Modelling Dataset**  
+2. Perform **Classification** with basic **Feature Engineering**  
+3. Convert **Categorical variables** into **Numerical**  
+4. Apply **Standardization**  
+5. Then try to **create an ANN**  
+6. We will also use **Dropout** (disabling some of the nodes while doing forward and backward propagation)  
+   - This helps our model **not to overfit**, as some weights will not be updated.  
+7. Use **Optimizers** and **save model files** in `.pickle` or `.h5` formats  
+
+Finally, we will use **Streamlit** for the **deployment** of our web model.
+### Building a Neural Network
+
+1. **Sequential Network (N/W)**  
+   - Used to build a model layer by layer.
+
+2. **Dense Layer**  
+   - Example: 64 neurons  
+
+3. **Activation Functions**  
+   - `sigmoid`, `tanh`, `ReLU`, `leaky ReLU`
+
+4. **Optimizer**  
+   - Performs **Backpropagation** → updates the weights.
+
+5. **Loss Function**  
+   - Measures how far the predicted output is from the actual output.
+
+6. **Metrics**  
+   - Example: `[accuracy]`, `[mse, mae]`
+
+7. **Training Process**  
+   - Generate **logs** → store in **folders** → visualize with **TensorBoard**
+
+# 🧠 Some Keywords within Neural Nets
+
+### Epochs
+In machine learning, an **epoch** means **one full pass through the entire training dataset by the learning algorithm**.
+
+Here’s the breakdown:
+
+- Imagine you have **1,000 training samples**.
+
+- In 1 epoch, your model sees all 1,000 samples once, adjusts weights, and completes a full training cycle.
+
+- If you set epochs=10, the model will see all 1,000 samples 10 times (weights updated after each batch/iteration).
+
+**🔹 Why not just one epoch?**
+
+One pass isn’t enough for the model to learn patterns well. Multiple epochs help it refine and improve accuracy.
+
+Too many epochs → **overfitting** (model memorizes training data instead of generalizing).
+
+### Validation Split:
+
+validation_split is a parameter in Keras/TensorFlow that reserves a fraction of your training data for validation.
+
+Example:
+
+    model.fit(X, y, epochs=10, validation_split=0.2)
+
+This means:
+
+- 80% → training
+
+- 20% → validation
+
+**Purpose:**
+
+Model trains on training part
+
+After each epoch, it tests on validation part
+
+Helps track **overfitting/underfitting**.
+
+**Important Notes:**
+
+Works only if dataset fits in memory (NumPy array / TensorFlow dataset).
+
+Split happens **before shuffling**, unless data is already shuffled.
+
+
+# 🧮 Loss Function
+
+A **loss function** is the mathematical formula a model tries to minimize during training.  
+It measures how far off predictions are from actual target values.
+
+> 💡 **Lower loss → better model fit**
+
+The **optimizer** uses the loss to adjust model weights during each training iteration.
+
+---
+
+## 📘 Common Loss Functions
+
+| **Problem Type**              | **Loss Function**                | **When to Use** |
+|-------------------------------|----------------------------------|-----------------|
+| **Binary Classification**     | `binary_crossentropy`            | Output layer has 1 neuron (sigmoid). |
+| **Multi-class Classification**| `categorical_crossentropy`       | Labels are one-hot encoded, output uses softmax. |
+|                               | `sparse_categorical_crossentropy`| Labels are integers (not one-hot). |
+| **Regression**                | `mean_squared_error (MSE)`       | Predicting continuous values. |
+|                               | `mean_absolute_error (MAE)`      | Continuous values; less sensitive to outliers. |
+| **Special Cases**             | `hinge`                          | SVM-style classification. |
+|                               | `kl_divergence`                  | Comparing probability distributions. |
+
+---
+
+### 🧠 Summary
+- **Goal:** Minimize loss to improve model accuracy.  
+- **Optimizer:** Uses gradients from the loss to update weights.  
+- **Choice:** Depends on problem type (classification, regression, etc.).
+
+
+**Example in Keras**
+```python
+model.compile(
+    optimizer='adam',
+    loss='binary_crossentropy',  # loss function
+    metrics=['accuracy']         # for monitoring
+)
