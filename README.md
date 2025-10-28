@@ -1,4 +1,15 @@
-# 🧠 Natural Language Processing (NLP) — Text Preprocessing & Vectorization
+<p align="center">
+  <img src="https://img.shields.io/badge/release-v0.0.1-blue" />
+  <img src="https://img.shields.io/badge/license-MIT-green" />
+  <img src="https://img.shields.io/github/issues/Moazzam-Siddiqui/COMPLETE-NLP-AND-DEEP-LEARNING" />
+  <img src="https://img.shields.io/github/stars/Moazzam-Siddiqui/COMPLETE-NLP-AND-DEEP-LEARNING?style=social" />
+  <img src="https://img.shields.io/github/forks/Moazzam-Siddiqui/COMPLETE-NLP-AND-DEEP-LEARNING?style=social" />
+  <img src="https://img.shields.io/github/watchers/Moazzam-Siddiqui/COMPLETE-NLP-AND-DEEP-LEARNING?style=social" />
+</p>
+
+
+
+Natural Language Processing (NLP) — Text Preprocessing & Vectorization
 
 ---
 
@@ -34,7 +45,8 @@ Converting text data into numerical vectors.
 - LSTM-RNN  
 - GRU-RNN  
 
-### 🧱 Word Embeddings, Transformer, BERT  
+### 🧱 Word Embeddings: 
+Transformer, BERT , GPT  
 
 **Libraries:**  
 - NLTK, SpaCy for ML  
@@ -55,7 +67,7 @@ Converting text data into numerical vectors.
 ## ✂️ TOKENIZATION
 
 **Definition:**  
-Breaking a corpus (paragraphs) into documents (sentences), then into words (tokens).  
+A process in which we take either Corpus or Documents and convert them into Tokens,which basically do Corpus to Documents,Documents to words.
 
 **Concepts:**
 1. Corpus (paragraphs)  
@@ -63,8 +75,10 @@ Breaking a corpus (paragraphs) into documents (sentences), then into words (toke
 3. Vocabulary (unique words in documents)  
 4. Words (all words in corpus)
 
-**Vocabulary Count:**  
-Unique words are counted only once — repeated words are ignored.
+**FOR UNIQUE WORDS OR VOCABULARY COUNT:-**  
+ Also counting Unique words(words that aren't repeated,if it is written once and appears again we will no count that word again in our word)
+
+So if I were to do classifications of words for like checking spam or ham,good reviews or bad reviews,etc I can use Tokenization,Stemming and Lemmatization combining them to make our model understand betterly, like if I were to classify a email in spam or ham the first step is to look out for corpus or paragraphs then convert them to either docs(sentences) or words then correcting the words using Lemmatization or Stemming and finally smartly allow our model to classify them using ML models,there are some disadvantages of using Stemming cuz sometimes it classify words badly increasing error chances so we use Lemmatization.
 
 ---
 
@@ -73,6 +87,7 @@ To classify emails (spam/ham) or reviews (good/bad):
 1. Tokenize corpus → documents → words.  
 2. Apply Lemmatization / Stemming to clean data.  
 3. Use ML models for classification.  
+
 
 **Note:** Stemming can sometimes misclassify words, so Lemmatization is often preferred.
 
@@ -83,6 +98,17 @@ To classify emails (spam/ham) or reviews (good/bad):
 **Definition:**  
 Lemmatization gives the valid *root form* (lemma) of a word.  
 Unlike stemming, output words are valid and meaningful.
+
+Lemmatization technique is like stemming. The output we will get after lemmatization is called
+lemma', which is a root word rather than root stem, the output of stemming. After lemmatization,
+we will be getting a valid word that means the same thing.
+
+NLTK provides WordNetLemmatizer class which is a thin wrapper around the wordnet corpus. This
+class uses morphy() function to the WordNet CorpusReader class to find a lemma.
+
+lemmatizer takes more time as compared to stemming cuz it uses morphy() function,it's use cases can be Q&A,chatbot,text summarization,etc.
+
+
 
 **Library:**  
 `WordNetLemmatizer` from **NLTK** uses the WordNet corpus via `morphy()`.
@@ -96,18 +122,19 @@ Unlike stemming, output words are valid and meaningful.
 
 ## 🧍‍♂️ NAMED ENTITY RECOGNITION (NER)
 
-NER identifies **names, organizations, locations, and companies** using POS tags.  
+A way of NLTK of RECOGNITION names,organization,company,location,etc using pos tags or NER identifies **names, organizations, locations, and companies** using POS tags.  
 Example: “Apple” → *Organization*, “India” → *Location*
 
 ---
 
 ## 🔧 BASIC STEPS OF PREPROCESSING
 
-**Step 1:** Dataset  
+**Step 1:** Dataset
+
 **Step 2:**  
-- Tokenization  
-- Lowercasing  
-- Removing special characters (regex)
+    1.Tokenize.
+    2.lowercase all value to sort out common words not making them Unique(for example:- "The" || "the")
+    3.Regular Expression(removing special characters)
 
 **Step 3:**  
 - Stemming  
@@ -115,65 +142,122 @@ Example: “Apple” → *Organization*, “India” → *Location*
 - Stopword removal
 
 **Step 4:**  
-Convert text to vectors (numerical representations of text).
+After these we try to convert our text data to vectors,VECTORS are basically our numerical representation of our text data,it can be word it can be sentence,it can be paragraph.
 
 ---
 
 ## 🔢 ONE-HOT ENCODING (OHE)
 
+One of the Text to Numeric Techniques
+
 **Example:**
 
-Vocabulary → [The, Food, Is, Good, Bad, Pizza, Amazing]
+Let's say our Vocabulary has → [The, Food, Is, Good, Bad, Pizza, Amazing]
 
 D1 = The food is good
 D2 = The food is bad
 D3 = Pizza is amazing
 
+now if we make matrix of each sentence
 
 **Matrix Representation:**
 
+D1:
+
 | Word | One-Hot Vector |
 |------|----------------|
-| The | [1,0,0,0,0,0,0] |
+| The |  [1,0,0,0,0,0,0] |
 | Food | [0,1,0,0,0,0,0] |
-| Is | [0,0,1,0,0,0,0] |
+| Is |   [0,0,1,0,0,0,0] |
 | Good | [0,0,0,1,0,0,0] |
+
+D2:
+
+| Word | One-Hot Vector |
+|------|----------------|
+| The | [1,0,0,0,0,0,0]|
+| Food | [0,1,0,0,0,0,0]|
+| Is |  [0,0,1,0,0,0,0]|
+| Good | [0,0,0,0,1,0,0]|
+
+D3:
+
+| Word    | Vector              |
+|:--------|:--------------------|
+| Pizza   | `[0,0,0,0,0,1,0]`   |
+| is      | `[0,1,0,0,0,0,0]`   |
+| Amazing | `[0,0,0,0,0,0,1]`   |
 
 **Advantages:**
 - Easy to implement (`sklearn.OneHotEncoder`, `pandas.get_dummies()`)
 
 **Disadvantages:**
-- Sparse matrix → Overfitting  
-- No semantic meaning  
-- Out of vocabulary (OOV) issue  
-- Fixed size input required  
+-.Sparse Matrix - Overfitting ('Very good accuracy with training data but not with new data')
+- For ML algorithm we need fixed size but in OHE we can't get it here
+- No semantic meaning is getting captured
+- Out of Vocabulary
 
 ---
 
-## 🧺 BAG OF WORDS (BoW)
+## 🧠 Bag of Words (BOW) Representation
 
-**Example:**
+**Definition:**
+Bag of Words (BOW) is a simple and widely used text representation technique in Natural Language Processing (NLP).  
+It converts text into numerical form by representing each sentence or document as a **set of words** (ignoring grammar and word order), and using either **binary values** (1 or 0) or **word frequencies** to indicate the presence or count of each word.
 
-S1 = "He is a good boy" → "good boy"
-S2 = "She is a good girl" → "good girl"
-S3 = "Boy and girl are good"
+First step is to lower all the words and then use Stopwords.
 
+When we words like basic Vocabulary (he, she, a, is, the, are, etc) it will be ignored cause it doesn't have any sentimental analysis.
 
-| Word | Frequency |
-|------|------------|
+For example:-
+
+| Original Sentence | After Removing Stopwords |
+|--------------------|--------------------------|
+| He is a good boy | good boy |
+| She is a good girl | good girl |
+| Boy and Girl are Good | Boy Girl Good |
+
+---
+
+### Vocabulary and Frequency
+
+| Vocabulary | Frequency |
+|-------------|------------|
 | good | 3 |
 | boy | 2 |
 | girl | 2 |
 
-**Advantages:**
-- Simple and intuitive  
-- Fixed-size input for ML  
+---
 
-**Disadvantages:**
-- Sparse matrix → Overfitting  
-- Loses word order  
-- Out of vocabulary  
-- No semantic meaning  
+### Sentence Representation
+
+| Sentence | Vector (good, boy, girl) | O/P |
+|-----------|---------------------------|-----|
+| S1 -> good boy | [1, 1, 0] | 1 |
+| S2 -> good girl | [1, 0, 1] | 1 |
+| S3 -> Boy Girl Good | [1, 1, 1] | 1 |
+
+---
+### Advantages of BOW :-
+
+1.Simple and Intuitive
+2.Fixed Size I/P - For ML algorithm
+
+### Disadvantages of BOW:-
+
+1.Sparse Matrix or array -> Overfitting
+2.Ordering of the word is getting changed
+3.Out of Vocabulary
+4.semantic meaning is still not getting captured
+
+
+
+### Binary BOW
+Binary BOW: {1 and 0}
+
+### Frequency BOW
+BOW: {count will be updated based on frequency}
+
 
 ---
 
@@ -183,166 +267,212 @@ Combines words to form pairs/triples for context.
 
 Example:
 
-S1: The food is good
-S2: The food is not good
+
+| Vocabulary | Note |
+|-------------|------|
+| food, not, good | *(“the” and “is” are not present because we have removed them using stopwords)* |
+
+| Sentence | Vector (food, not, good) |
+|-----------|--------------------------|
+| S1 → The food is good | [1, 0, 1] |
+| S2 → The food is not good | [1, 1, 1] |
 
 
-**Bigrams:** food-good, food-not, not-good  
-**Trigrams:** The-food-is, food-is-good
+let's say from S1 we are going to make combination :-
+**Bigrams (combination of two words):** food-good, food-not, not-good  
+You can clearly see the difference between the vectors.  
+Wherever the combination matches, we can represent it with `1`.
 
-**Why use N-Grams?**
-- Captures contextual and semantic meaning better than BoW.
+### For S1:
+| Combination | Vector |
+|--------------|---------|
+| food not good | 1 |
+| food good | 0 |
+| food not | 1 |
+| not good | 0 |
 
 ---
 
-## 📊 TF-IDF (Term Frequency–Inverse Document Frequency)
+### For S2:
+| Combination | Vector |
+|--------------|---------|
+| food not good | 1 |
+| food good | 1 |
+| food not | 0 |
+| not good | 1 |
 
-### Term Frequency (TF)
+sklearn → n-gram= (1,1) → unigrams
+  = (1,2) → unigram, bigram
+  = (1,3) → unigram, bigram,trigram
+  = (2,3) → Bigram, trigram.
 
-### TF = (No. of times word appears) / (Total words)
 
-### Inverse Document Frequency (IDF)
+**Why use N-Grams?**
+-   cuz it is giving us better contextial and semantic meaning of the words, better than it's predecessor BOW.
 
-###  IDF = log_e(Total Documents / Documents containing word)
+---
+
+## 🧮 TF–IDF (Term Frequency – Inverse Document Frequency)
+
+S1 → good boy  
+S2 → good girl  
+S3 → boy girl good  
+
+**TF (Term Frequency):** No. of repetitions of words / No. of words in the sentence  
+**IDF (Inverse Document Frequency):** logₑ(No. of sentences / No. of sentences containing the word)
+
+---
+
+### 📊 Term Frequency (TF) and Inverse Document Frequency (IDF)
+
+**TF–IDF (Term Frequency – Inverse Document Frequency)** is a numerical statistic used in **Natural Language Processing (NLP)** and **Information Retrieval** to measure how important a word is to a document in a collection or corpus.
+
+
 
 
 | Word | S1 | S2 | S3 | IDF |
 |------|----|----|----|-----|
-| good | 1/2 | 1/2 | 1/3 | log(3/3)=0 |
-| boy | 1/2 | 0 | 1/3 | log(3/2) |
-| girl | 0 | 1/2 | 1/3 | log(3/2) |
-
-**TF-IDF = TF × IDF**
-
-**Advantages:**
-- Captures word importance  
-- Fixed-size input  
-
-**Disadvantages:**
-- Sparse matrix  
-- Out of vocabulary  
+| good | 1/2 | 1/2 | 1/3 | logₑ(3/3) = 0 |
+| boy  | 1/2 | 0 | 1/3 | logₑ(3/2) |
+| girl | 0 | 1/2 | 1/3 | logₑ(3/2) |
 
 ---
 
-## 🧭 WORD EMBEDDINGS
+### ⚙️ TF × IDF (Final TF–IDF Matrix)
 
-**Definition:**  
-Word embeddings represent words as vectors in continuous vector space — similar words are close together.
-
-**Types:**
-1. **Count/Frequency-based:** OHE, BoW, TF-IDF  
-2. **Deep Learning-based:** Word2Vec  
+| Sentence | good | boy | girl |
+|-----------|------|-----|------|
+| S1 | 0 | 1/2 × logₑ(3/2) | 0 |
+| S2 | 0 | 0 | 1/2 × logₑ(3/2) |
+| S3 | 0 | 1/3 × logₑ(3/2) | 1/3 × logₑ(3/2) |
 
 ---
 
-## 🧩 WORD2VEC
+### ✅ Advantages of TF–IDF
+1. Intuitive  
+2. Inputs are fixed size → Vocabulary size  
+3. Word importance is captured effectively  
 
-**Types:**
+---
+
+### ⚠️ Disadvantages of TF–IDF
+1. Sparse matrix  
+2. Out-of-vocabulary issue  
+
+
+---
+
+# 🧠 Word Embeddings
+
+### 📖 Definition (Wikipedia)
+In **Natural Language Processing (NLP)**, **word embedding** is a term used for representing words for text analysis — typically in the form of a **real-valued vector** that encodes the meaning of a word.  
+Words that are **closer in the vector space** are expected to be **similar in meaning**.
+
+---
+
+## 🧩 Word Embedding Techniques
+
+1. **Count or Frequency-based Methods:**  
+   - OHE (One Hot Encoding)  
+   - BOW (Bag of Words)  
+   - TF-IDF  
+
+2. **Deep Learning-based Methods:**  
+   - Word2Vec  
+
+---
+
+## 🧠 Word2Vec Types
+
 1. **CBOW (Continuous Bag of Words)**  
 2. **Skip-Gram**
 
-Trained using a neural network (2013).  
-Finds word associations — synonymous or related words.
+---
 
-**Vocabulary Example:**
+## 🔍 About Word2Vec
 
-Boy, Girl, King, Queen, Apple, Mango
+**Word2Vec** is a technique for NLP introduced in 2013.  
+It uses a **neural network model** to learn word associations from a large corpus of text.  
 
+Once trained, the model can:
+- Detect **synonymous words**
+- Suggest additional words for incomplete sentences  
+
+Each word is represented by a list of numbers called a **vector**.
+
+---
+
+## 🧾 Example Vocabulary
+
+**Vocabulary:**  
+Boy, Girl, King, Queen, Apple, Mango  
+
+Each word in the vocabulary is converted into a **feature representation vector** based on attributes (like Gender, Age, Royal, Food, etc.).  
+If we assume there are `n` such features, each word will have `n` dimensions (e.g., 300).
 
 | Feature | Boy | Girl | King | Queen | Apple | Mango |
-|----------|-----|------|------|-------|--------|--------|
+|----------|-----|------|------|--------|--------|--------|
 | Gender | 1 | -1 | -0.92 | 0.93 | -0.01 | 0.01 |
 | Royal | 0.01 | 0.02 | -0.95 | 0.96 | -0.01 | 0.01 |
 | Age | 0.03 | 0.02 | 0.75 | 0.68 | -0.95 | 0.96 |
 | Food | - | - | - | - | -0.99 | 0.99 |
+| ... | ... | ... | ... | ... | ... | ... |
+| nth | - | - | - | - | - | - |
 
-**Famous Relation Example:**
-
-King - Man + Queen = Woman
-King - Boy + Queen = Girl
-
-
-These relationships define vector-space semantics.
-
-**Google Word2Vec:**  
-Trained on 3 billion words, usually 300 dimensions per vector.
+> Feature representations can extend to hundreds or thousands of dimensions.
 
 ---
 
-## 📐 COSINE SIMILARITY
+## ✴️ Famous Word2Vec Calculation
 
-**Formula:**
-Distance = 1 - cos(θ)
+A well-known example from Google’s research:
 
-
-**Interpretation:**
-- Smaller distance → higher similarity  
-- 0° → completely similar (distance = 0)  
-- 90° → unrelated (distance = 1)
-
-Used to measure similarity between feature vectors like movie genres, text, etc.
 
 ---
 
-## 🧮 CBOW (Continuous Bag of Words)
+## 🔄 SkipGram
 
 **Definition:**  
-A neural network model predicting a word based on its context (surrounding words).
+SkipGram is just the **opposite of CBOW**.  
+While CBOW predicts the **target word** based on **context words**,  
+SkipGram predicts **context words** based on a **target word**.
 
-**Example Corpus:**
+---
 
-[iNeuron company is related to Data Science]
-
-
+### 🧩 Example
 **Window Size = 5**
 
-| Input | Output |
-|-------|---------|
+| O/P (Context Words) | I/P (Target Word) |
+|----------------------|-------------------|
 | iNeuron, company, related, to | is |
 | company, related, to, Data | related |
 | related, to, Data, Science | to |
 
-**Key Notes:**
-- Choose **odd** window sizes (e.g., 5) for balanced context.  
-- Larger window → better performance, more context.  
-- CBOW is a fully connected neural network.  
+---
+
+### ⚙️ When to Use CBOW vs SkipGram
+
+| Dataset Size | Recommended Model |
+|---------------|-------------------|
+| Small dataset | **CBOW** |
+| Large dataset | **SkipGram** |
 
 ---
 
-For Architectural Working:
-<p align="center">
-  <img src="./Images/image.png" alt="NLP Diagram" width="600">
-</p>
+### 💡 Notes
 
-## 🧠 Skip-Gram
-
-**Definition:**  
-Skip-Gram is the inverse of CBOW. Given a **target word**, Skip-Gram predicts the **surrounding context words**.
-
-**Window Size:** `5`
-
-| **Output (Context Words)**                | **Input (Target Word)** |
-|-------------------------------------------|--------------------------|
-| iNeuron, company, related, to             | is                       |
-| company, related, to, Data                | related                  |
-| related, to, Data, Science                | to                       |
-
-### ⚖️ When to use
-- **CBOW** → better for **small datasets** (faster training).  
-- **Skip-Gram** → better for **large datasets** and for learning **good vectors for rare words**.
-
-### 📈 Notes
-1. Increasing the **training data** typically improves both CBOW and Skip-Gram.  
-2. Increasing the **window size** gives the model more context and often increases the vector dimensionality/representational capacity.
+1. To improve CBOW or SkipGram performance, **increase the training data**.  
+2. **Increasing window size** also increases **vector dimensions**.  
+   > Larger window → larger vector dimension → richer context representation
 
 ---
 
-## 🚀 Advantages of Word2Vec
+## ✅ Advantages of Word2Vec
 
-1. Produces **dense** word vectors (not sparse).  
-2. Captures **semantic** relationships (similar words are close in vector space).  
-3. Uses a **fixed vector dimensionality** (e.g., 100, 300).  
-4. Only a small portion of words may be **OOV** depending on training.
+1. Produces **dense matrices** instead of sparse ones.  
+2. **Captures semantic information** effectively.  
+3. Provides a **fixed set of dimensions** for all words.  
+4. Only a few words fall **Out of Vocabulary (OOV)**.
 
 ---
 
@@ -369,4 +499,7 @@ An ANN is composed of layers of connected neurons (input layer → one or more h
 
 ---
 
-
+For Architectural Working:
+<p align="center">
+  <img src="./Images/image.png" alt="NLP Diagram" width="600">
+</p>
