@@ -1,4 +1,11 @@
 <p align="center">
+  <img src="./Images/CND.png" alt="NLP Diagram" height="1280" width="3000" href= "https://github.com/Moazzam-Siddiqui/COMPLETE-NLP-AND-DEEP-LEARNING">
+</p>  
+
+<hr>
+
+
+<p align="center">
   <img src="https://img.shields.io/badge/release-v0.0.1-blue" />
   <img src="https://img.shields.io/badge/license-MIT-green" />
   <img src="https://img.shields.io/github/issues/Moazzam-Siddiqui/COMPLETE-NLP-AND-DEEP-LEARNING" />
@@ -6,6 +13,48 @@
   <img src="https://img.shields.io/github/forks/Moazzam-Siddiqui/COMPLETE-NLP-AND-DEEP-LEARNING?style=social" />
   <img src="https://img.shields.io/github/watchers/Moazzam-Siddiqui/COMPLETE-NLP-AND-DEEP-LEARNING?style=social" />
 </p>
+
+## 📑 Table of Contents
+
+1. [🧹 Cleaning the Input](#-cleaning-the-input)  
+2. [🧾 Text Preprocessing (Tokenization, Lemmatization, Stemming)](#-text-preprocessing-tokenization-lemmatization-stemming)  
+3. [🔡 Converting Text to Vectors](#-converting-text-to-vectors)  
+4. [🧩 Text Preprocessing — Part 2 (BoW, TF-IDF, N-Grams)](#-text-preprocessing--part-2-bow-tf-idf-n-grams)  
+5. [🧠 Text Preprocessing — Part 3 (Word2Vec)](#-text-preprocessing--part-3-word2vec)  
+6. [🤖 Deep Learning Techniques](#-deep-learning-techniques)  
+7. [🧬 Neural Networks (RNN, LSTM, GRU)](#-neural-networks-rnn-lstm-gru)  
+8. [🧱 Word Embeddings (Transformer, BERT, GPT)](#-word-embeddings-transformer-bert-gpt)  
+9. [💡 Use Cases of NLP](#-use-cases-of-nlp)  
+10. [✂️ Tokenization](#️-tokenization)  
+11. [⚙️ Example: Spam/Ham Classification](#️-example-spamham-classification)  
+12. [📚 WordNet Lemmatizer](#-wordnet-lemmatizer)  
+13. [🧍‍♂️ Named Entity Recognition (NER)](#️-named-entity-recognition-ner)  
+14. [🔧 Basic Steps of Preprocessing](#-basic-steps-of-preprocessing)  
+15. [🔢 One-Hot Encoding (OHE)](#-one-hot-encoding-ohe)  
+16. [🧠 Bag of Words (BoW)](#-bag-of-words-bow)  
+17. [🔗 N-Grams](#-n-grams)  
+18. [🧮 TF–IDF (Term Frequency – Inverse Document Frequency)](#-tfidf-term-frequency--inverse-document-frequency)  
+19. [🧠 Word Embeddings](#-word-embeddings)  
+20. [🧩 Word2Vec Techniques (CBOW & Skip-Gram)](#-word2vec-techniques-cbow--skip-gram)  
+21. [🔍 About Word2Vec](#-about-word2vec)  
+22. [✴️ Word2Vec Calculation](#️-word2vec-calculation)  
+23. [🔄 SkipGram Example](#-skipgram-example)  
+24. [⚙️ CBOW vs SkipGram](#️-cbow-vs-skipgram)  
+25. [✅ Advantages of Word2Vec](#-advantages-of-word2vec)  
+26. [🤖 Deep Learning & Neural Networks](#-deep-learning--neural-networks)  
+27. [🔁 Sequential Data](#-sequential-data)  
+28. [⚙️ Why Prefer ANN over RNN?](#️-why-prefer-ann-over-rnn)  
+29. [🧠 LSTM (Long Short-Term Memory)](#-lstm-long-short-term-memory)  
+30. [💡 Why LSTM?](#-why-lstm)  
+31. [🧠 LSTM Architecture Explained](#-lstm-architecture-explained)  
+32. [⚙️ LSTM Gate Operations](#️-lstm-gate-operations)  
+33. [🧮 LSTM Equations (Markdown Format)](#-lstm-equations-markdown-format)  
+34. [🧠 LSTM Workflow Diagram](#-lstm-workflow-diagram)  
+35. [🧩 GRU (Gated Recurrent Unit)](#-gru-gated-recurrent-unit)  
+36. [🧠 Chronology Samjhiye (Understand the Chronology)](#-chronology-samjhiye-understand-the-chronology)
+
+
+
 
 
 
@@ -735,6 +784,40 @@ Works only if dataset fits in memory (NumPy array / TensorFlow dataset).
 Split happens **before shuffling**, unless data is already shuffled.
 
 
+# ⚙️ Optimizers
+
+**Optimizers** adjust the weights of a neural network to minimize the loss function during training.  
+They decide how big and in what direction weight updates should be after each step.
+
+---
+
+## 🚀 Popular Optimizers in Deep Learning
+
+| **Optimizer** | **Key Idea** | **When to Use** |
+|----------------|--------------|-----------------|
+| **SGD (Stochastic Gradient Descent)** | Updates weights using small batches. | Simple, general-purpose, but can be slow. |
+| **SGD with Momentum** | Adds “velocity” to smooth updates. | When SGD is too slow or oscillating. |
+| **RMSProp** | Scales learning rate based on recent gradients. | Great for RNNs, noisy gradients. |
+| **Adam** | Combines Momentum + RMSProp. | Most common choice. |
+| **Adagrad** | Adapts learning rates for sparse data. | NLP, sparse features. |
+| **Adadelta** | Extension of Adagrad; reduces aggressive decay. | Similar to RMSProp. |
+| **Nadam** | Adam + Nesterov momentum. | Often faster than Adam. |
+
+---
+
+## 🧩 Example in Keras
+
+```python
+from tensorflow.keras.optimizers import Adam
+
+model.compile(
+    optimizer=Adam(learning_rate=0.001),
+    loss='binary_crossentropy',
+    metrics=['accuracy']
+)
+```
+
+
 # 🧮 Loss Function
 
 A **loss function** is the mathematical formula a model tries to minimize during training.  
@@ -773,3 +856,387 @@ model.compile(
     loss='binary_crossentropy',  # loss function
     metrics=['accuracy']         # for monitoring
 )
+```
+# 🧩 Why ANN Isn’t Used Instead of RNN
+
+Because **ANN** can’t handle **sequential data** (like text or time series).  
+Whenever the **order of data matters** — e.g., text prediction or code suggestion — **RNNs** are needed.
+
+---
+
+### 📚 Examples
+
+- ✍️ Text suggestions in mobile keyboards  
+- 💻 Code autocompletion in VS Code  
+
+---
+
+## 🔁 LSTM (Long Short-Term Memory)
+
+### 🧠 What is LSTM?
+
+**LSTM** is a specialized type of **RNN** designed to overcome the **short-term memory limitation** of regular RNNs.  
+It helps maintain and access information across longer time intervals effectively.
+
+---
+
+### ⚙️ Core Components: Gates & Cell Structure
+
+LSTM introduces a **memory cell** with three main gates:
+
+| **Gate** | **Function** |
+|-----------|---------------|
+| **Forget Gate** | Decides what past information to discard. |
+| **Input Gate** | Determines what new information to add. |
+| **Output Gate** | Controls what information passes to the next hidden state. |
+
+These gates collectively **regulate information flow**, allowing **long-term memory retention** and solving the **vanishing gradient** problem.
+## Why LSTM Works Better
+
+Unlike standard RNNs that forget after a few timesteps, **LSTMs preserve important information** using gates and memory cells.  
+This makes them highly effective for:
+
+- 🗣️ **Language Modeling**  
+- 🎙️ **Speech Recognition**  
+- 📈 **Time-Series Prediction**
+
+---
+
+### ⚙️ TL;DR
+- **LSTM = Advanced RNN**  
+- Remembers information for longer periods  
+- Uses **gates + memory cells** for selective retention  
+- Solves **long-term dependency** and **vanishing gradient** problems  
+- Widely used in **sequential tasks**
+
+---
+
+### 💡 Why LSTM (Long Short-Term Memory)?
+Because **RNNs suffer from vanishing gradients** and have **short-term memory**.  
+When a model needs to **understand context over longer sequences**, **LSTM is the solution**.
+
+
+#### For Architectural Understanding:
+
+<p align="center">
+  <img src="./Images/Forget.jpg" alt="NLP Diagram" width="600">
+  <img src="./Images/new.jpg" alt="NLP Diagram" width="600">
+</p>
+
+
+# 1. First, what’s an RNN?
+
+A **Recurrent Neural Network (RNN)** is a type of neural network designed to handle **sequences** (like text, speech, stock prices, time series).
+
+Unlike normal neural networks that process inputs independently, **RNNs have a loop** inside them.  
+This loop lets them **remember information from the previous step** and use it for the **next step**.
+
+**Example:**
+If you’re predicting the next word in a sentence:
+- Input 1: `"I"` → remembers `"I"`
+- Input 2: `"am"` → combines `"I" + "am"`
+- Input 3: `"happy"` → predicts what might come next (like `"today"`)
+
+---
+
+# 2. The problem with vanilla RNNs
+
+They work okay, but they struggle with **long-term memory**:
+- They forget things quickly.
+- When sequences are long (like long sentences), early information gets lost.  
+  → This is called the **vanishing gradient problem**.
+
+---
+
+# 3. Enter LSTM (Long Short-Term Memory)
+
+**LSTM** is a special kind of RNN that **solves the forgetting problem**.  
+It does this by introducing a **cell state** and **gates** that carefully control what information to **keep**, **forget**, or **update**.
+
+# 4. The LSTM Cell (The Magic Box 🧠)
+
+Inside an **LSTM**, at each time step, we have:
+
+- **Cell state (Ct)** → like a conveyor belt carrying long-term memory.  
+- **Hidden state (ht)** → the output at this step (short-term memory).
+
+And three **gates** (each is a small neural network with a sigmoid activation giving outputs between `0` and `1`):
+
+1. **Forget Gate** → Decides what to throw away.  
+   - If it outputs `0` → forget info.  
+   - If it outputs `1` → keep info.  
+2. **Input Gate** → Decides what new information to store.  
+3. **Output Gate** → Decides what the next hidden state (output) should be.
+
+---
+
+# 5. The Flow (Step by Step 🔄)
+
+At each time step *t* (say word #3 in a sentence):
+
+1. Input `xt` (current word’s vector) + previous hidden state `ht-1` go into the gates.  
+2. **Forget Gate** decides what old info from the cell state should be dropped.  
+3. **Input Gate** decides what new info to add.  
+4. Update the **cell state Ct**.  
+5. **Output Gate** decides the new hidden state `ht` (used for prediction).  
+
+👉 **LSTM = Smart RNN that remembers long stuff and forgets irrelevant stuff.**
+
+---
+
+# 6. Intuition with Example 💡
+
+Imagine you’re reading this sentence:  
+> “*The cat that chased the mouse was very fast.*”
+
+To figure out what “was very fast” is describing, you need to remember that **the subject is "cat"**, not “mouse”.
+
+- A **vanilla RNN** might forget that early info ("cat").  
+- An **LSTM’s cell state** helps it remember the subject while ignoring less useful words.
+
+---
+
+### In Short:
+
+- **RNN** → Remembers past info but forgets quickly.  
+- **LSTM** → Advanced RNN with memory gates → Remembers important things longer, forgets unimportant things.
+
+# LSTM Architecture Explained (Beginner + Technical)
+
+---
+
+## 1. Neurons in LSTM
+
+Just like in a regular neural network, each gate in **LSTM** is made of **neurons**.
+
+- Each neuron takes an input vector, multiplies it by weights, adds bias, and passes it through an activation function (sigmoid or tanh).  
+- But here, the inputs are not just the current input `xt` → we also bring in the **previous hidden state ht-1**.
+
+So each gate has neurons that see:  
+```
+[xt, ht−1]   or   [x_t, h_{t-1}]
+```
+*(we concatenate input and hidden state into one big vector).*
+
+---
+
+## 2. Vector Transfers
+
+At every step, information flows as **vectors**:
+
+- **Input xt** → word embedding / feature vector.  
+- **Hidden state ht-1** → carries info from previous step.  
+- **Cell state Ct-1** → long-term memory vector.  
+
+All of these are **passed around as vectors**, multiplied with weight matrices, and updated.
+
+---
+
+## 3. The Gates (with math 🧮)
+
+
+<p align="left">
+ <img src="./Images/new1.png" alt="NLP Diagram" width="600">
+</p>
+
+---
+
+<p align="left">
+  <img src="./Images/new2.png" alt="NLP Diagram" width="600">
+</p> 
+
+---
+
+<p align="left">
+  <img src="./Images/new3.png" alt="NLP Diagram" width="600">
+</p>
+
+---
+
+<p align="left">
+  <img src="./Images/new4.png" alt="NLP Diagram" width="600">
+</p>
+
+---
+
+## 4. Key Operations in LSTM
+
+- **Concatenation ([h<sub>t−1</sub>, x<sub>t</sub>]):**  
+  Input vector and hidden state are joined into one long vector → fed into the gates.
+
+- **Pointwise operations (⊙):**
+  - Forget gate multiplies old cell state element by element.
+  - Input gate multiplies candidate values element by element.
+  - Output gate multiplies tanh(cell state) element by element.
+
+- **Copying (Highway for memory):**  
+  The **cell state (C)** is like a conveyor belt:
+  - Information flows **forward in time** with some parts copied unchanged.
+  - Only small adjustments happen through the gates.  
+  This *copy mechanism* is why LSTMs remember long-term info so well.
+
+---
+
+## 5. Intuition Recap
+
+- Neurons inside gates decide **what to keep/forget**.
+- Vectors carry info: inputs, hidden state, memory.
+- Concatenation merges input + hidden state.
+- Pointwise ops make selective memory edits.
+- Copying lets important info flow across many time steps.
+
+---
+
+**In one line:**  
+LSTM is just an RNN where vectors flow through gates made of neurons, and using concatenation, pointwise math, and copying, it learns what info to remember or forget over time.
+
+---
+
+**Detailed Diagram of LSTM:**
+<p align="left">
+  <img src="./Images/lstm.png" alt="NLP Diagram" width="600">
+</p>
+
+---
+
+## Variants of LSTM RNN
+
+### 1. Peephole Connection
+
+We let the gate layers look at the **cell state**.  
+Adds connections from the cell state **C<sub>t−1</sub>** into each gate (so gates “peek” at the cell).  
+Improves timing/precision for tasks where exact counting/phase matters (e.g., timing signals, small-step counting).  
+Slightly more parameters; may help in learning precise gating.
+
+<p align="left">
+  <img src="./Images/Peep.png" alt="NLP Diagram" width="600">
+</p>
+
+---
+### 2. Combining Forget and Input Gates
+
+Instead of separately deciding what to forget and what new information to add, we make this decision **together**.
+
+**GOAL:** We only forget when we’re going to input something in its place.
+
+So we only input new values to the state when we forget something older.
+
+<p align="left">
+  <img src="./Images/combine.png" alt="NLP Diagram" width="600">
+</p>
+
+---
+
+### 3.GRU(GATED RECURRENT UNIT) introduced by cho,et al in 2014:
+<p align="left">
+  <img src="./Images/GRU.png" alt="NLP Diagram" width="600">
+</p>
+
+
+Always remember that the upper line **h<sub>t−1</sub>** represents **long-term memory**,  
+while the lower one **x<sub>t</sub>** represents our **short-term memory**.
+
+---
+
+### Why use GRU instead of LSTM RNN?
+
+LSTM RNN structure is quite complex, as it contains:
+- Forget gate  
+- Input gate + candidate memory  
+- Output gate (each with its own pointwise operation)  
+
+Let’s not forget the **trainable parameters** (weights and biases) involved as well.  
+Assume our input size is around 100 and our hidden nodes are 100 — this means the number of trainable parameters increases rapidly.  
+As these parameters grow, **training time increases** proportionally (since more parameters = longer forward and backward propagation time).
+
+---
+
+### GRU Simplification
+
+In a **GRU (Gated Recurrent Unit)**, instead of using separate long-term and short-term memories,  
+they **combine both memory cells** into one.
+
+So, here **h<sub>t−1</sub>** represents a **single memory cell** — our hidden state.  
+Within GRUs, operations and gating mechanisms are designed to simplify LSTM’s complexity while still retaining its memory capabilities.
+
+
+## Mathematical Functioning
+
+**1. Update Gate (Z<sub>t</sub>):**  
+We calculate it as:  
+**Z<sub>t</sub> = σ(W<sub>z</sub> · [h<sub>t−1</sub>, x<sub>t</sub>])**  
+
+*(Summary: We perform a pointwise multiplication using update gate weights with the concatenated previous hidden state and current input, then apply the sigmoid activation function.)*
+
+---
+
+**2. Reset Gate (R<sub>t</sub>):**  
+We calculate it as:  
+**R<sub>t</sub> = σ(W<sub>r</sub> · [h<sub>t−1</sub>, x<sub>t</sub>])**  
+
+*(Summary: Similar to the update gate — we multiply reset gate weights with [h<sub>t−1</sub>, x<sub>t</sub>] and apply sigmoid activation.)*
+
+---
+
+**3. Temporary Hidden State (~h<sub>t</sub>):**  
+We calculate it as:  
+**~h<sub>t</sub> = tanh(W · [R<sub>t</sub> * h<sub>t−1</sub>, x<sub>t</sub>])**  
+
+*(Summary: The reset gate modifies the previous hidden state element-wise, then we concatenate it with the current input, apply weights, and finally use the tanh activation.)*
+
+---
+
+**4. Final Hidden State (h<sub>t</sub>):**  
+We calculate it as:  
+**h<sub>t</sub> = (1 − Z<sub>t</sub>) * h<sub>t−1</sub> + Z<sub>t</sub> * ~h<sub>t</sub>**  
+
+*(Summary: The final hidden state is obtained by combining the previous hidden state and the temporary hidden state, weighted by the update gate.)*
+
+Now, some of you might ask why we don’t see any **bias terms** in our update gate, reset gate, or temporary hidden state equations.  
+Yes — we **do have biases**, and we add them in practice, but for simplicity in mathematical derivations, we often omit them.
+
+---
+
+## Understanding What Each State Does
+
+### **Update Gate (z<sub>t</sub>) – “Keep old or take new?”**
+Imagine your brain deciding:  
+*Should I remember the old thing or learn the new thing?*  
+
+- High z<sub>t</sub> → “Keep more of the new info.”  
+- Low z<sub>t</sub> → “Stick with the old memory.”
+
+---
+
+### **Reset Gate (r<sub>t</sub>) – “Forget old or keep it?”**
+When learning something new, *how much of the old memory should I use?*
+
+- Low r<sub>t</sub> → “Forget old stuff, focus only on new.”  
+- High r<sub>t</sub> → “Keep some old memory to help understand new info.”
+
+---
+
+### **Candidate / Temporary Hidden State (~h<sub>t</sub>) – “New idea”**
+This represents the **new information** generated from the current input and (partially) the old memory.
+
+---
+
+### **Final Hidden State (h<sub>t</sub>) – “Final memory”**
+This is the **mix of old memory and new idea**,  
+decided by the update gate — ready to be passed forward to the next time step.
+
+---
+
+## 🧠 CHRONOLOGY SAMJHIYE (Understand the Chronology)
+
+Your brain = **Instagram feed**
+
+| Concept | Analogy |
+|----------|----------|
+| **Update gate** | Algorithm deciding if a new trend should appear on your feed |
+| **Reset gate** | Algorithm deciding if old videos should be hidden or stay |
+| **Candidate (~h<sub>t</sub>)** | New viral video ready to pop up |
+| **Final hidden state (h<sub>t</sub>)** | Your feed right now — perfectly balanced |
+
+---
+
