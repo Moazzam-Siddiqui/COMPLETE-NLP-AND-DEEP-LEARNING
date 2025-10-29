@@ -1,0 +1,348 @@
+CLEANING THE INPUT:-
+
+    Text Preprocessing
+            [Tokenization]:-Techniques to change paragraph to sentence,sentence to words, it is called as token.
+            [Lemmatization],
+            [Stemming].
+
+CONVERTING TEXT TO VECTORS:-
+
+        Text Preprocessing Part 2:-
+            Majorly converting text data to vectors, Techniques used:-(BOW,TFIDF,Unigram,Bigram)
+
+        Text Preprocessing Part 3:-
+            Word2Vec,AvgWord2Vec
+
+DL TECHNIQUES:-
+     
+    NEURAL NETWORK:-RNN,LSTN RNN,GRU RNN
+
+WORD EMBEDDING,TRANSFORMER,BERT
+
+Libs:-
+    NLTK,SpacyNLP for ML.
+    WHILE FOR DL and Other we will use Tensorflow and Pytorch.
+
+
+USE CASES OF NLP:-
+                Auto Correct.
+                Auto Generated text for mail.
+                AUTO-REPLY in Apps like linkedin.
+                Whatsapp Notification,etc.
+                Google Translation.
+                Google Images from search engine.
+                Hugging Face models.
+
+TOKENIZATION:-
+A process in which we take either Corpus or Documents and convert them into Tokens,which basically do Corpus to Documents,Documents to words.
+
+        Topics:-
+        1.Corpus(paragraphs)
+        2.Documents(sentences)
+        3.Vocabulary(Unique words present in Documents)
+        4.Words(All Words present in Corpus)
+FOR UNIQUE WORDS OR VOCABULARY COUNT:-
+        Also counting Unique words(words that aren't repeated,if it is written once and appears again we will no count that word again in our word)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+So if i were to do classifications of words for like checking spam or ham,good reviews or bad reviews,etc i can use Tokenization,Stemming and Lemmatization combining them to make our model understand betterly, like if i were to classify a email in spam or ham the first step is to look out for corpus or paragraphs then convert them to either docs(sentences) or words then correcting the words using Lemmatization or Stemming and finally smartly allow our model to classify them using ML models,there are some disadvantages of using Stemming cuz sometimes it classify words badly increasing error chances so we use Lemmatization.
+
+WORDNET LEMMATIZER:-
+
+        Lemmatization technique is like stemming. The output we will get after lemmatization is called
+        lemma', which is a root word rather than root stem, the output of stemming. After lemmatization,
+        we will be getting a valid word that means the same thing.
+
+        NLTK provides WordNetLemmatizer class which is a thin wrapper around the wordnet corpus. This
+        class uses morphy() function to the WordNet CorpusReader class to find a lemma.
+
+        lemmatizer takes more time as compared to stemming cuz it uses morphy() function,it's use cases can be Q&A,chatbot,text summarization,etc.
+
+
+NAME ENTITY RECOGNITION:-
+
+    A way of NLTK of RECOGNITION names,organization,company,location,etc using pos tags
+
+STEP 1:-DATASET
+
+STEP 2:-
+Basically till now of part one and part two of text Preprocessing or cleaning process we have done:-
+
+    1.Tokenize.
+    2.lowercase all value to sort out common words not making them Unique(for example:- "The" || "the")
+    3.Regular Expression(removing special characters)
+
+STEP 3:-
+    1.Stemming
+    2.lemmatization
+    3.Stopwords
+
+STEP 4:-
+After these we try to convert our text data to vectors,VECTORS are basically our numerical representation of our text data,it can be word it can be sentence,it can be paragraph.
+
+
+Now let's talk about OHE(One Hot Encoding):-
+
+    lets say:-
+    D1= The food is good                    Our Vocabulary has :-The Food Is Good Bad Pizza Amazing
+    D2= The food is bad
+    D3= Pizza is Amazing
+
+now if we make matrix of each sentence
+
+For D1:-
+
+The         [[1,0,0,0,0,0,0],
+food         [0,1,0,0,0,0,0],
+is           [0,0,1,0,0,0,0],
+Good         [0,0,0,1,0,0,0]]           4x7 Matrix
+
+For D2:-
+
+The         [[1,0,0,0,0,0,0],
+food         [0,1,0,0,0,0,0],
+is           [0,0,1,0,0,0,0],
+bad          [0,0,0,0,1,0,0]]           4x7 Matrix
+
+For D3:-
+
+Pizza          [[0,0,0,0,0,1,0],
+is              [0,1,0,0,0,0,0],
+Amazing         [0,0,0,0,0,0,1]]        3x7 Matrix
+
+
+Advantages of OHE:-
+
+    1.Easy to implement with python
+    [sklearn OneHotEncoder, pandas pd.get_dummies]
+
+
+Disadvantages of OHE:-
+
+    1.Sparse Matrix - Overfitting ('Very good accuracy with training data but not with new data')
+    2.For ML algorithm we need fixed size but in OHE we can't get it here
+    3.No semantic meaning is getting captured
+    4.Out of Vocabulary
+
+
+BOW( BAG OF WORDS ):-
+
+    First step is to lower all the words and then use Stopwords.
+
+    when we words like basic Vocabulary (he,she,a,is,the,are,etc)it will be ignored cause it doesn't have any sentimental analysis
+    for example:-
+    He is a good boy                        S1->good boy
+    She is a good girl              =>      S2->good girl
+    Boy and Girl are Good                   S3->Boy Girl Good
+
+Vocabulary      Frequency                   good    boy     girl                O/P
+good                3                      S1 [1,      0,      0]                1
+boy                 2                      S2 [0,      1,      0]                1
+girl                2                      S3 [0,      0,      1]                1
+
+
+Binary BOW:- {1 and 0}
+BOW:-{count will be updated based on frequency}
+
+Advantages of BOW :-
+
+1.Simple and Intuitive
+2.Fixed Size I/P - For ML algorithm
+
+Disadvantages of BOW:-
+
+1.Sparse Matrix or array -> Overfitting
+2.Ordering of the word is getting changed
+3.Out of Vocabulary
+4.semantic meaning is still not getting captured
+
+
+N-Grams:-                                           Vocabulary
+                                                    food not good             (The and is not present beacause we have removed them using stopwords)
+    S1-The food is good                         ->  1     0     1
+    S2-The food is not good                     ->  1     1     1
+
+food not good
+
+let's say from S1 we are going to make combination :-
+    
+    Bigrams (combination of two words):-
+        food good,food not,not good
+
+    no see this i can clearly see the difference of vectors,where ever the combination match i can say 1,
+    for S1:-
+
+        food not good|  food good|  food not|   not good
+        1     0     1       1           0           0
+
+
+    for S2:-
+
+        food not good|  food good|  food not|   not good
+        1     1     1       0           1           1
+
+sklearn → n-gram= (1,1) → unigrams
+    = (1,2) → unigram, bigram
+    = (1,3) → unigram, bigram,
+        trigram
+    = (2,3) → Bigram, trigram.
+
+Why we are using Ngrams:-
+    cuz it is giving us better contextial and semantic meaning of the words, better than it's predecessor BOW.
+
+TF-IDF [Term Frequency-Inverse Document Frequency]:-
+    
+    S1 -> good boy                                        TF(Term-Frequency): No. of repetition of words/no. of words in sentence
+    S2 -> good girl                                       IDF(Inverse Document Frequency): Loge(No.of sentences/No. of sentences containing the word)
+    S3 -> boy girl good
+
+
+
+TERM FREQUENCY:-                                             IDF:-
+
+                                                    Words       IDF
+         S1      S2      S3           |
+good    1/2      1/2     1/3          |             good       loge(3/3)=0
+boy     1/2       0      1/3          |             boy        loge(3/2)
+girl     0        1/2    1/3          |             girl       loge(3/2)
+
+
+when we say the term TF-IDF what we basically are doing is multiplying (TF * IDF)
+
+                good                boy                   girl
+        S1      0                   1/2*loge(3/2)         0
+        S2      0                   0                     1/2*loge(3/2)
+        S3      0                   1/3*loge(3/2)         1/3*loge(3/2)
+
+Advantages of TF-IDF:-
+
+1.Intuitive
+2.Inputs are fixed size-> Vocab size
+3.Word Importance is getting captured
+
+
+Disadvantages of TF-IDF :-
+
+1.Sparse Matrix
+2.Out of Vocabulary
+
+Word Embeddings (Wikipedia)
+In natural language processing (NLP), word embedding is a term used for the representation of words for text
+analysis, typically in the form of a real-valued vector that encodes the meaning of the word such that the words that
+are closer in the vector space are expected to be similar in meaning.
+
+
+There are two Word Embedding Techniques:
+
+1.Count or Frequency : OHE,BOW,TF-IDF
+2.Deep Learning : Word2Vec
+
+We now also have Word2Vec in two types:
+
+1.CBOW(Continous Bag of Words)
+2.SkipGram
+
+
+Word2vec is a technique for natural language processing published in 2013. The word2vec algorithm uses a neural
+network model to learn word associations from a large corpus of text. Once trained, such a model can detect
+synonymous words or suggest additional words for a partial sentence. As the name implies, word2vec represents
+each distinct word with a particular list of numbers called a vector.
+
+now let's say i have some words in my Vocabulary
+
+Boy Girl King Queen Apple Mango
+
+Now each word which is present in our Vocabulary will be converted to Feature representation, now we are going to convert each of these words to vectors based on some features ,some of the features can be Gender,Age,Royal,Food till nth feature ,lets say if we count all the features till nth one it will be 300 features.
+
+
+            Boy     Girl    King    Queen   Apple   Mango
+
+Gender      1       -1     -0.92    0.93    -0.01    0.01
+Royal       0.01    0.02   -0.95    0.96    -0.01    0.01
+Age         0.03    0.02    0.75    0.68    -0.95    0.96
+Food         -       -        -       -     -0.99    0.99
+ |           -       -        -       -       -       -
+ |           -       -        -       -       -       -
+ |           -       -        -       -       -       -
+ |           -       -        -       -       -       -
+nth
+
+The feature representation just not be 300 dimensions it can be thousands or millions too, the above wast just an example how feature representation works.
+
+There are also calculations like [King-Man+Queen] this is a very famous calculation also written in googles research papers
+
+So, the calculation [King-Man+Queen] = Women
+or let's say        [King-Boy+Queen] = Girl
+
+and This is what kind of relations we are able to get.
+We are going to use Google Word2Vec which is trained on 3 billion word
+
+Let's say we don't use 300 dimensions but instead we are going to use only 2 dimensions each word:
+
+King[0.95,0.96]             Man[0.95,0.98]
+Queen[-0.96,0.97]         Women[-0.96,-0.94]
+
+Now if we do the calculation of King-Man+Queen = Women now what the vector represents that we really needs to understand that's where
+Consine similarity comes in.
+
+
+COSINE SIMILARITY:
+
+    Distance = 1 - Consine similarity
+
+    Now what is Cosine similarity, it is the angle between two vectors.
+
+    let's say we get cos45 which is 1/underoot2 which is 0.707
+
+    so the distance between the 2 vectors will be 1 - 0.707 = 0.29
+
+    now let's take another example where the angle is 90 degree so the distance comes 1-0=1 so there is no similarity
+    if there comes any thing close to 0 we can say that this vector is somewhat similar to another.
+    Now if the angle is 0 and the distance will become 1-1=0 so we can say the vectors are similar
+
+    let's say our movie genre like action,comedy,thriller,etc is feature representation and our movie name is vector.
+
+
+
+CBOW(Continous Bag of words):
+
+for every Preprocessing step we need a dataset or corpus and these corpus are huge and so for example we take this as our corpus:
+
+[iNeuron company is related to Data Science]
+
+first of all we select a window size,lets say our window size is 5 and for input and output data we must require our window size
+
+
+now in our corpus:
+
+
+    iNeuron company is related to Data Science
+
+lets take the first 5 windows so our centre word will be is :
+
+I/P                                  O/P
+iNeuron,company,related,to           is
+
+so like that we will change our center word or output again after 5 words to the next word like first it was is now it will be related and further on:
+
+I/P                                  O/P
+company,related,to,Data             related
+related,to,Data,Science              to
+
+we can take any number as our window size but we should make sure our window size should be odd not even cuz it will help to have same numbers of input on both sides of output,i.e on left or right side.
+
+
+what is CBOW,it is nothing but a fully connected neural network.
+
+when i give window size of 5 we will get output as a 5 vectors. We give our windows size 5 because we probably want our feature representation with a vector size of 5.That means every word will be converted into 5 vector.So when i took the example of 300 dimension size of google ,the window size was 300.More the window size the better the model perform.
+
+SkipGram:
+
+window Size = 5
+
+O/P                                 I/P
+iNeuron,company,related,to           is
+company,related,to,Data             related
+related,to,Data,Science              to
+
