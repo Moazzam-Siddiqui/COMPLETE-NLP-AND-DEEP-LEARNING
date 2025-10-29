@@ -1,9 +1,7 @@
-python>=3.10
+python>=3.8
 numpy
 pandas
 nltk
 regex
-gensim
 scikit-learn
-tqdm
-joblib
+nltk.download('punkt')
