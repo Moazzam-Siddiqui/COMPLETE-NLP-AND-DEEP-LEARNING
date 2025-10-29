@@ -120,10 +120,15 @@ A process in which we take either Corpus or Documents and convert them into Toke
 3. Vocabulary (unique words in documents)  
 4. Words (all words in corpus)
 
+[For Tokeization Files](https://github.com/Moazzam-Siddiqui/COMPLETE-NLP-AND-DEEP-LEARNING/tree/main/Text%20PreProcessing)
+
+
 **FOR UNIQUE WORDS OR VOCABULARY COUNT:-**  
  Also counting Unique words(words that aren't repeated,if it is written once and appears again we will no count that word again in our word)
 
 So if I were to do classifications of words for like checking spam or ham,good reviews or bad reviews,etc I can use Tokenization,Stemming and Lemmatization combining them to make our model understand betterly, like if I were to classify a email in spam or ham the first step is to look out for corpus or paragraphs then convert them to either docs(sentences) or words then correcting the words using Lemmatization or Stemming and finally smartly allow our model to classify them using ML models,there are some disadvantages of using Stemming cuz sometimes it classify words badly increasing error chances so we use Lemmatization.
+
+
 
 ---
 
@@ -137,6 +142,28 @@ To classify emails (spam/ham) or reviews (good/bad):
 **Note:** Stemming can sometimes misclassify words, so Lemmatization is often preferred.
 
 ---
+
+## STEMMING 
+
+**Definition:**
+Stemming is the process of reducing a word to its base or root form (called the stem), by removing prefixes or suffixes.
+
+**✅ Example:**
+
+"running", "runs", "ran" → "run"
+
+"studies", "studying" → "studi" (note: not always a valid word)
+
+**📘 Purpose:**
+Used in Natural Language Processing (NLP) to group words with the same meaning or concept together, improving search, text classification, and information retrieval.
+
+**🧠 Common Algorithm:**
+
+Porter Stemmer — one of the most widely used stemming algorithms.
+
+[For Stemming File](https://github.com/Moazzam-Siddiqui/COMPLETE-NLP-AND-DEEP-LEARNING/tree/main/Text%20PreProcessing)
+
+
 
 ## 📚 WORDNET LEMMATIZER
 
@@ -163,12 +190,18 @@ lemmatizer takes more time as compared to stemming cuz it uses morphy() function
 - Text Summarization  
 - Q&A Systems  
 
+[For Lemmetization File](https://github.com/Moazzam-Siddiqui/COMPLETE-NLP-AND-DEEP-LEARNING/tree/main/Text%20PreProcessing)
+
+
 ---
 
 ## 🧍‍♂️ NAMED ENTITY RECOGNITION (NER)
 
 A way of NLTK of RECOGNITION names,organization,company,location,etc using pos tags or NER identifies **names, organizations, locations, and companies** using POS tags.  
 Example: “Apple” → *Organization*, “India” → *Location*
+
+[For NER File](https://github.com/Moazzam-Siddiqui/COMPLETE-NLP-AND-DEEP-LEARNING/tree/main/Text%20PreProcessing)
+
 
 ---
 
@@ -303,6 +336,7 @@ Binary BOW: {1 and 0}
 ### Frequency BOW
 BOW: {count will be updated based on frequency}
 
+[For Bag of Word File](https://github.com/Moazzam-Siddiqui/COMPLETE-NLP-AND-DEEP-LEARNING/tree/main/Text%20PreProcessing)
 
 ---
 
@@ -405,6 +439,9 @@ S3 → boy girl good
 2. Out-of-vocabulary issue  
 
 
+[For  TF-IDF Files](https://github.com/Moazzam-Siddiqui/COMPLETE-NLP-AND-DEEP-LEARNING/tree/main/Text%20PreProcessing)
+
+
 ---
 
 # 🧠 Word Embeddings
@@ -471,6 +508,8 @@ If we assume there are `n` such features, each word will have `n` dimensions (e.
 ## ✴️ Famous Word2Vec Calculation
 
 A well-known example from Google’s research:
+
+[Embedding Folder](https://github.com/Moazzam-Siddiqui/COMPLETE-NLP-AND-DEEP-LEARNING/tree/main/Embedding)
 
 
 ---
@@ -542,6 +581,9 @@ An ANN is composed of layers of connected neurons (input layer → one or more h
 4. Train with mini-batches and validate.  
 5. Evaluate on test set and tune hyperparameters.
 
+
+[ANN Folder](https://github.com/Moazzam-Siddiqui/COMPLETE-NLP-AND-DEEP-LEARNING/tree/main/ANN)
+
 ---
 
 For Architectural Working:
@@ -594,6 +636,9 @@ RNNs are used for tasks like **text generation**, **speech recognition**, **mach
 
 **Key idea:**  
 RNN = ANN + Memory (it remembers past information while processing new data)
+
+[Simple RNN Folder](https://github.com/Moazzam-Siddiqui/COMPLETE-NLP-AND-DEEP-LEARNING/tree/main/Simple%20RNN)
+
 
 ---
 
@@ -1081,10 +1126,13 @@ All of these are **passed around as vectors**, multiplied with weight matrices, 
 - Pointwise ops make selective memory edits.
 - Copying lets important info flow across many time steps.
 
+
 ---
 
 **In one line:**  
 LSTM is just an RNN where vectors flow through gates made of neurons, and using concatenation, pointwise math, and copying, it learns what info to remember or forget over time.
+
+[LSTM RNN Folder](https://github.com/Moazzam-Siddiqui/COMPLETE-NLP-AND-DEEP-LEARNING/tree/main/LSTM%20RNN)
 
 ---
 
