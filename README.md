@@ -50,7 +50,7 @@
 32. [🧮 Mathematical Functioning (GRU)](#-mathematical-functioning-gru)
 33. [🧠 Understanding What Each State Does (GRU)](#-understanding-what-each-state-does-gru)
 34. [🕰️ Chronology Samjhiye (Understand the Chronology)](#-chronology-samjhiye-understand-the-chronology)
-35. [BIDIRECTIONAL RNN)](#-bidirectional-rnn)
+35. [BIDIRECTIONAL RNN](#-bidirectional-rnn)
 
 
 
