@@ -50,7 +50,7 @@
 32. [🧮 Mathematical Functioning (GRU)](#-mathematical-functioning-gru)
 33. [🧠 Understanding What Each State Does (GRU)](#-understanding-what-each-state-does-gru)
 34. [🕰️ Chronology Samjhiye (Understand the Chronology)](#-chronology-samjhiye-understand-the-chronology)
-
+35. [BIDIRECTIONAL RNN)](#-bidirectional-rnn)
 
 
 
@@ -1284,3 +1284,41 @@ Your brain = **Instagram feed**
 
 ---
 
+### SOME MORE VARINATS OF RNN(DIY TASK - FIND THEIR TASK AND WORKING):
+
+1.ONE TO MANY RNN
+2.MANY TO ONE RNN
+3.MANY TO MANY RNN
+4.ONE TO ONE RNN
+
+
+## BIDIRECTIONAL RNN 
+
+🔹 Standard RNN
+
+Processes sequence data in one direction only — usually from past → future.
+
+Example: When predicting the next word, it only looks at previous words.
+
+🔹 Bidirectional RNN (BRNN)
+
+Processes the data in both directions — forward (past → future) and backward (future → past).
+
+This means it has two RNN layers:
+
+One reading the sequence from start to end
+
+One reading it from end to start
+
+The outputs from both directions are combined (concatenated or summed) at each time step.
+
+🔹 Why use it?
+
+Because in many NLP tasks, context from both past and future helps improve understanding —
+for example:
+
+Speech recognition
+
+Named Entity Recognition
+
+Machine translation
