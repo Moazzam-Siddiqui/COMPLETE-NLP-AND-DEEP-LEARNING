@@ -1325,5 +1325,22 @@ Named Entity Recognition
 
 Machine translation
 
+# ENCODER AND DECODER 
+<p align="center">
+  <img src="./Images/ENCODER.png" alt="NLP Diagram" width="600" >
+</p>
 
+**Definition:**
+The Encoder - Decoder Architecture is a Neural Network design commonly used in **sequence-to-sequence (Seq2Seq)** tasks like machine translation,text summarization,image captioning and Speech Recognition.
+
+**WORKING:**
+
+1.Our encoder takes all the inputs and converts all of them into a context vector,this context vector will have more information about the input in the form of vectors.
+2.Now we pass all of our vectors to the decoder to solve our use case as the context vectors get passed within the decoder.
+3.And finally we will get our Output.
+
+NOW WHAT ARE THE SOME OF THEIR USE CASE IS:
+1.Language Translation
+2.Text Generation
+3.Text Suggestion
 
